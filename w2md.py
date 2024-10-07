@@ -119,12 +119,14 @@ def main():
         # Rate limiting of 3 seconds between requests to avoid overwhelming the server
         time.sleep(3)
 
-    # Save the concatenated Markdown content to the output file
-    with open(args.output, 'w') as f:
-        f.write('\n\n'.join(all_markdown_content))
-
-    # Print a success message when the file is saved
-    print(f"[green]Markdown content saved to '{args.output}'[/green]")
+        # Save the concatenated Markdown content to the output file if there's content
+    if all_markdown_content:
+        with open(args.output, 'w') as f:
+            f.write('\n\n'.join(all_markdown_content))
+        # Print a success message when the file is saved
+        print(f"[green]Markdown content saved to '{args.output}'[/green]")
+    else:
+        print("[yellow]No content to save. Output file not created.[/yellow]")
 
 
 if __name__ == "__main__":
