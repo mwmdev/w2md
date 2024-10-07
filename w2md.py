@@ -75,6 +75,10 @@ def convert_to_markdown(html_content):
 
     # Remove escaped underscores in the Markdown content
     markdown_content = markdown_content.replace('\_', '_')
+
+    # Make sure titles are on their own line
+    markdown_content = re.sub(r'(\w)(#+)', r'\1\n\2', markdown_content)
+
     return markdown_content
 
 
