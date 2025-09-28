@@ -31,12 +31,20 @@ The script takes several command-line arguments to define what content to scrape
 - `--target` or `-t`: The class, ID, or HTML element to scrape content from (e.g., `.content`, `#main`, `div`). (Required)
 - `--exclude` or `-x`: A list of classes, IDs, or HTML elements to exclude from the scraped content. Supports multiple selectors.
 - `--output` or `-o`: The name of the output Markdown file. (Default: `output.md`)
+- `--dry-run`: Preview selector matches without writing any files. Displays a Rich table summarizing results.
 
 ### Example Usage
 ```sh
 python w2md.py -u urls.txt -t ".content" -x ".social-share,#sidebar" -o documentation.md
 ```
 This command scrapes the content from URLs listed in `urls.txt`, targeting elements with class `.content`, excluding elements with class `.social-share` and ID `#sidebar`, and saving the output to `documentation.md`.
+
+To preview selector coverage without writing files:
+
+```sh
+python w2md.py -u urls.txt -t ".content" --dry-run
+```
+This command fetches each URL, evaluates the selector, and prints a table showing which pages matched, how many elements were excluded, and any errors encountered.
 
 ## Notes
 - The script waits 3 seconds between each request to prevent overwhelming the servers being scraped.
